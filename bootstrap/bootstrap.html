@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Grid Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .row-custom-1 {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border: 2px solid #6c757d;
+        }
+        
+        .row-custom-2 {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border: 2px dashed #0d6efd;
+        }
+        
+        .row-custom-3 {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #d1e7dd;
+            border: 2px dotted #198754;
+        }
+        
+        .row-custom-4 {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+        }
+        
+        .block {
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        
+        .block-1 { border-left: 4px solid #0dcaf0; }
+        .block-2 { border-left: 4px solid #6f42c1; }
+        .block-3 { border-left: 4px solid #fd7e14; }
+        .block-4 { border-left: 4px solid #dc3545; }
+        .block-5 { border-left: 4px solid #20c997; }
+        .block-6 { border-left: 4px solid #6610f2; }
+        .block-7 { border-left: 4px solid #ffc107; }
+        
+        
+        .card-person {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .card-person:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .card-img-top {
+            height: 300px;
+        }
+        
+        
+        .navbar-custom {
+            background-color: #343a40;
+            margin-bottom: 30px;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: rgba(255,255,255,.8);
+        }
+        .navbar-custom .nav-link:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">Мой Сайт</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">О нас</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Услуги
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Веб-разработка</a></li>
+                            <li><a class="dropdown-item" href="#">Дизайн</a></li>
+                            <li><a class="dropdown-item" href="#">Консультации</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Контакты</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Поиск">
+                    <button class="btn btn-outline-light" type="submit">Найти</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+
+        <h2 class="mb-4 text-center">Наша команда</h2>
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <div class="card card-person">
+                    <img src="1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Иван Петров</h5>
+                        <p class="card-text text-muted">Frontend разработчик</p>
+                        <p class="card-text">Специалист по JavaScript и React с 5-летним опытом работы.</p>
+                        <a href="#" class="btn btn-primary">Профиль</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-person">
+                    <img src="3.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Анна Смирнова</h5>
+                        <p class="card-text text-muted">Дизайнер UX/UI</p>
+                        <p class="card-text">Создаю удобные и красивые интерфейсы для ваших продуктов.</p>
+                        <a href="#" class="btn btn-primary">Профиль</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-person">
+                    <img src="2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Алексей Иванов</h5>
+                        <p class="card-text text-muted">Backend разработчик</p>
+                        <p class="card-text">Эксперт по Node.js и базам данных с 7-летним опытом.</p>
+                        <a href="#" class="btn btn-primary">Профиль</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-custom-1 order-xs-2">
+            <div class="col-12">
+                <div class="block block-1">
+                    <h3>Блок 1</h3>
+                    <p>Это первый блок, занимающий всю ширину экрана. При размере xs он переместится вниз.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row row-custom-2">
+            <div class="col-md-4 col-sm-4">
+                <div class="block block-2">
+                    <h3>Блок 2</h3>
+                    <p>Первый из трех блоков во втором ряду. На md и больше - 3 блока по 4 колонки.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="block block-3">
+                    <h3>Блок 3</h3>
+                    <p>Второй блок во втором ряду. Имеет такие же классы, как и соседние блоки.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="block block-4">
+                    <h3>Блок 4</h3>
+                    <p>Третий блок во втором ряду. Все три блока выстроятся в ряд на md и больше.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row row-custom-3">
+            <div class="col-lg-6 col-md-12">
+                <div class="block block-5">
+                    <h3>Блок 5</h3>
+                    <p>Этот блок занимает половину экрана на lg и больше. На md - всю ширину.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 d-sm-block d-none">
+                <div class="block block-6">
+                    <h3>Блок 6</h3>
+                    <p>Этот блок занимает четверть экрана на lg. Исчезает на sm.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="block block-7">
+                    <h3>Блок 7</h3>
+                    <p>Этот блок также занимает четверть экрана на lg. На md - половину.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row row-custom-4 order-xs-1">
+            <div class="col-12">
+                <div class="block" style="border-left: 4px solid #212529;">
+                    <h3>Блок 8</h3>
+                    <p>Это блок в четвертом ряду. При размере xs он переместится вверх.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
