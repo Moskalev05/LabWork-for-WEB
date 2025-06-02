@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страны мира</title>
+    <link rel="stylesheet" href="lab6.css" />
+</head>
+<body>
+    <h1>Страны мира</h1>
+    
+    <div class="menu-container">
+        <div class="arrow-pointer" id="menu-pointer"></div>
+        
+        <ul class="menu" id="country-menu">
+            <li class="menu-item active" data-country="france">
+                Франция
+            </li>
+            <li class="menu-item" data-country="japan">
+                Япония
+            </li>
+            <li class="menu-item" data-country="usa">
+                США
+            </li>
+            <li class="menu-item" data-country="brazil">
+                Бразилия
+            </li>
+            <li class="menu-item" data-country="australia">
+                Австралия
+            </li>
+        </ul>
+    </div>
+    
+    <div class="image-container">
+        <img src="flag_frantsija_new.jpg" alt="Франция" class="country-image" id="current-image">
+    </div>
+    <p class="instructions">Наведите курсор на изображение, чтобы увидеть эффект удаления</p>
+    <script src = "lab6.js">
+    </script>
+</body>
+</html>
