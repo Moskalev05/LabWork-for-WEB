@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: darkgreen;
+    font-style: italic;
+    font-size: 14pt;
+}
+
+header {
+    background-color: #f4f4f4;
+    padding: 10px;
+}
+
+h3 {
+    color: #fffb00;
+    text-align: right;
+    font-size: 16pt;
+}
+
+.container {
+    max-width: 80%;
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 20%;
+    height: auto;
+    align-self: center;
+}
+
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th, td {
+    border: 2px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+th{
+    background-color: #fffb00;
+}
+
+a {
+    text-decoration: underline;
+    color: darkgreen;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+li {
+    margin-bottom: 5px;
+}

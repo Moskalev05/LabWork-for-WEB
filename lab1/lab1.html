@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vortex Club — Визитка</title>
+    <style>
+        body {
+            font-family: 'Orbitron', 'Rajdhani', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .business-card {
+            width: 140mm;
+            height: 90mm;
+            perspective: 1000px;
+            position: relative;
+        }
+        
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+        }
+        
+        .business-card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-sizing: border-box;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            top: 0;
+            left: 0;
+        }
+        
+        .card-front {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .card-back {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            transform: rotateY(180deg);
+            transform-origin: center;
+            justify-content: space-between;
+            padding: 30px;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .logo-text {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d2ff, #a18cd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .club-type {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .slogan {
+            font-size: 20px;
+            margin: 10px 0 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .contacts-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            font-size: 10px;
+            margin-top: 8%;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 0 2px;
+        }
+        
+        .back-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .back-logo .logo {
+            width: 150px;
+            height: 150px;
+            font-size: 70px;
+        }
+
+        .features {
+            display: grid;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .feature-item {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-text {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .highlight {
+            font-weight: bold;
+        }
+
+        .qr-code {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: white;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            z-index: 3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="business-card">
+        <div class="card-inner">
+            <div class="card-front">
+                <div class="logo-container">
+                    <div class="logo">V</div>
+                    <div class="logo-text">Vortex Club</div>
+                    <div class="club-type">КОМПЬЮТЕРНЫЙ КЛУБ</div>
+                </div>
+                <div class="slogan">"Погрузись в вихрь компьютерных игр!"</div>
+            </div>
+            
+            <div class="card-back">
+                <div class="qr-code">
+                    <img src="frame.png" alt="QR Code">
+                </div>
+                <div class="back-logo">
+                    <div class="logo">V</div>
+                </div>
+                
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🚀</span>
+                        <span class="feature-text"><span class="highlight">Топовые игровые ПК</span><br>RTX 4090, i9-13900K</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🎮</span>
+                        <span class="feature-text"><span class="highlight">Консольная зона</span><br>PS5 Slim</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💺</span>
+                        <span class="feature-text"><span class="highlight">Комфортные места</span><br>Эргономичные кресла, 140Hz мониторы</span>
+                    </div>
+                </div>
+                
+                <div class="contacts-row">
+                    <div class="contact-item">📍 Могилев, ул. Ленинская, 77</div>
+                    <div class="contact-item">📞 +375 44 199 93 40</div>
+                    <div class="contact-item">🌐 vortex-club.by</div>
+                    <div class="contact-item">🕒 Круглосуточно</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
