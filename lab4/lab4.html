@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета участника Олимпиады</title>
+    <link rel ="stylesheet" href = "lab4.css">
+</head>
+<body>
+    <h1>Анкета участника Олимпиады</h1>
+    <form id="olympiadForm">
+        <div class="form-group">
+            <label>Баллы за задачу 1:</label>
+            <div>
+                <input type="radio" id="task1-10" name="task1" value="10">
+                <label for="task1-10">10</label>
+            </div>
+            <div>
+                <input type="radio" id="task1-20" name="task1" value="20">
+                <label for="task1-20">20</label>
+            </div>
+            <div>
+                <input type="radio" id="task1-30" name="task1" value="30">
+                <label for="task1-30">30</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Баллы за задачу 2:</label>
+            <div>
+                <input type="radio" id="task2-10" name="task2" value="10">
+                <label for="task2-10">10</label>
+            </div>
+            <div>
+                <input type="radio" id="task2-20" name="task2" value="20">
+                <label for="task2-20">20</label>
+            </div>
+            <div>
+                <input type="radio" id="task2-30" name="task2" value="30">
+                <label for="task2-30">30</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Баллы за задачу 3:</label>
+            <div>
+                <input type="radio" id="task3-10" name="task3" value="10">
+                <label for="task3-10">10</label>
+            </div>
+            <div>
+                <input type="radio" id="task3-20" name="task3" value="20">
+                <label for="task3-20">20</label>
+            </div>
+            <div>
+                <input type="radio" id="task3-30" name="task3" value="30">
+                <label for="task3-30">30</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Баллы за задачу 4:</label>
+            <div>
+                <input type="radio" id="task4-10" name="task4" value="10">
+                <label for="task4-10">10</label>
+            </div>
+            <div>
+                <input type="radio" id="task4-20" name="task4" value="20">
+                <label for="task4-20">20</label>
+            </div>
+            <div>
+                <input type="radio" id="task4-30" name="task4" value="30">
+                <label for="task4-30">30</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Баллы за задачу 5:</label>
+            <div>
+                <input type="radio" id="task5-10" name="task5" value="10">
+                <label for="task5-10">10</label>
+            </div>
+            <div>
+                <input type="radio" id="task5-20" name="task5" value="20">
+                <label for="task5-20">20</label>
+            </div>
+            <div>
+                <input type="radio" id="task5-30" name="task5" value="30">
+                <label for="task5-30">30</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Баллы за задачу 6:</label>
+            <div>
+                <input type="radio" id="task6-10" name="task6" value="10">
+                <label for="task6-10">10</label>
+            </div>
+            <div>
+                <input type="radio" id="task6-20" name="task6" value="20">
+                <label for="task6-20">20</label>
+            </div>
+            <div>
+                <input type="radio" id="task6-30" name="task6" value="30">
+                <label for="task6-30">30</label>
+            </div>
+        </div>
+        <button type="button" onclick="processForm()">Определить место</button>
+    </form>
+    <div id="result" class="result" style="display: none;"></div>
+    
+    <script src = "lab4.js"></script>
+</body>
+</html>
