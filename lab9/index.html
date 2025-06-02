@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #header {
+            background: #f0f0f0;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Шапка с лого -->
+    <div id="header">
+        <img src="logo.png" alt="Логотип" class="logo">
+        <h1 id="main_h1">Заголовок сайта</h1>
+    </div>
+
+    <!-- Таблица с мотоциклами -->
+    <table id="moto_table">
+        <tr>
+            <td><img src="moto1.jpg" alt="Мотоцикл 1"></td>
+            <td>Описание мотоцикла 1</td>
+        </tr>
+        <tr>
+            <td><img src="moto2.jpg" alt="Мотоцикл 2"></td>
+            <td>Описание мотоцикла 2</td>
+        </tr>
+        <tr>
+            <td><img src="moto3.jpg" alt="Мотоцикл 3"></td>
+            <td>Описание мотоцикла 3</td>
+        </tr>
+    </table>
+
+    <script>
+        $(document).ready(function() {
+            // 1. Альтернативные способы выбора logo.jpg
+            var texH1 = $('#main_h1').text('текст измененный с помощью jquery');
+            var myLogo = $('img[src*="logo.jpg"]').hide();
+            myLogo.hide(3000);
+            myLogo.show(3000);
+
+            // Альтернативные варианты:
+            var myLogo1 = $('img[src$="logo.jpg"]').css('border', '2px dashed red');
+            var myLogo2 = $('.logo').css('background', 'yellow');
+
+            // 2. Скрыть все картинки кроме первой за 5 секунд
+            $('img').not(':first').hide(5000);
+
+            // 3. Функция для изменения атрибута
+            function changeAttribute(elementId, attributeName, newValue) {
+                $('#' + elementId).attr(attributeName, newValue);
+            }
+            
+            // Пример вызова функции:
+            changeAttribute('main_h1', 'title', 'Новый заголовок');
+
+            // 4. Обработка moto2.jpg
+            $('img[src$="moto2.jpg"]')
+                .css('border', '1px solid #333333')
+                .animate({ 'border-width': '5px' }, 5000)
+                .promise().done(function() {
+                    $('#header').fadeOut(5000);
+                });
+
+            // 5. Добавление нового абзаца
+            $('<p>', {
+                id: 'newparagraph',
+                text: 'Это новый абзац, добавленный через jQuery.'
+            })
+            .appendTo('body')
+            .css({
+                'background-color': 'black',
+                'color': 'white',
+                'padding': '10px',
+                'margin-top': '20px'
+            });
+        });
+    </script>
+</body>
+</html>
