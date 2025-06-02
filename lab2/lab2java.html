@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Проверка данных</title>
+</head>
+<body>
+
+<script>
+    var lastName = prompt("Введите вашу фамилию:");
+    var firstName = prompt("Введите ваше имя:");
+    var middleName = prompt("Введите ваше отчество:");
+
+    var fullName = lastName + " " + firstName + " " + middleName;
+
+    var confirmation = confirm("Пожалуйста, подтвердите введенные данные:\n" + fullName);
+
+    if (confirmation) {
+        alert("Приветствуем вас, " + fullName + "!");
+    } else {
+        alert("Ошибка. Пожалуйста, обновите страницу и введите данные заново.");
+    }
+</script>
+
+</body>
+</html>
