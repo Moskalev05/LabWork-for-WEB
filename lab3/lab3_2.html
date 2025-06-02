@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ввод фамилии и имен</title>
+<style>
+    body{
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    h1{
+        font-size: 16pt;
+    }
+
+    p{
+    font-size: 14pt;
+    }
+
+</style>
+</head>
+<body>
+
+<script>
+    var names = "";
+
+    while (true) {
+        var lastName = prompt("Введите фамилию:");
+        if (lastName == null) {
+            break;
+        }
+        
+        var firstName = prompt("Введите имя:");
+        if (firstName == null) {
+            break;
+        }
+
+        names += lastName + " " + firstName + "<br>";
+    }
+
+    if (names !== "") {
+        document.write("<h1>Введенные фамилии и имена:</h1><p>" + names + "</p>");
+    } else {
+        document.write("<h1>Вы не ввели ни одной фамилии и имени.</h1>");
+    }
+</script>
+
+</body>
+</html>
