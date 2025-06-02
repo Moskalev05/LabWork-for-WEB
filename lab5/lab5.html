@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Определение знака зодиака</title>
+<style>
+    body {
+        font-family: 'Times New Roman', Times, serif, sans-serif;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <h1>Определение знака зодиака</h1>
+    <form id="zodiacForm">
+        <label for="day">День рождения:</label>
+        <input type="number" id="day" min="1" max="31" required>
+        <label for="month">Месяц рождения:</label>
+        <input type="number" id="month" min="1" max="12" required>
+        <button type="submit">Определить знак зодиака</button>
+    </form>
+    <div id="result"></div>
+
+    <script src = lab5.1.js></script>
+</body>
+</html>

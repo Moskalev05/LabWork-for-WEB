@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анкета сотрудников</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <h1>Анкета сотрудников</h1>
+    <form id="employeeForm">
+        <label for="surname">Фамилия сотрудника:</label>
+        <input type="text" id="surname" required><br><br>
+        <label for="contractDate">Дата заключения контракта:</label>
+        <input type="date" id="contractDate" required><br><br>
+        <label for="contractYears">Срок контракта (в годах):</label>
+        <input type="number" id="contractYears" min="1" required><br><br>
+        <button type="submit">Добавить сотрудника</button>
+    </form>
+    <br>
+    <label for="yearInput">Выберите год для поиска сотрудников:</label>
+    <input type="number" id="yearInput" min="2025" value="2025">
+    <button onclick="findEmployeesByYear()">Найти сотрудников</button>
+    <div id="results"></div>
+
+    <script src = "lab5.2.js"></script>
+</body>
+</html>
