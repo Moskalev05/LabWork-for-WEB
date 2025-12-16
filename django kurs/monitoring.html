@@ -1,0 +1,337 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="display-5 mb-4">
+            <i class="bi bi-camera-video text-primary"></i> Мониторинг безопасности с ИИ
+        </h1>
+    </div>
+</div>
+
+<!-- Секция загрузки фотоматериалов -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-cloud-upload"></i> Анализ фотоматериалов с YOLOv8</h5>
+            </div>
+            <div class="card-body">
+                <p class="lead">Загрузите фотографии строительной площадки для автоматического анализа соблюдения требований безопасности с использованием модели YOLOv8</p>
+                
+                <div class="upload-area mb-4" id="uploadArea" style="border: 2px dashed #dee2e6; border-radius: 10px; padding: 40px; text-align: center; background: #f8f9fa; cursor: pointer;">
+                    <i class="bi bi-cloud-arrow-up display-4 text-muted mb-3"></i>
+                    <h5>Перетащите сюда фотографии или нажмите для выбора файлов</h5>
+                    <p class="text-muted">Поддерживаемые форматы: JPG, PNG, JPEG (макс. 10 МБ)</p>
+                    <input type="file" id="fileInput" accept=".jpg,.jpeg,.png" style="display: none;">
+                </div>
+                
+                <!-- Прелоадер -->
+                <div id="analysisLoader" class="text-center" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Анализ...</span>
+                    </div>
+                    <p class="mt-2">Идет анализ изображения с помощью YOLOv8...</p>
+                </div>
+                
+                <div class="controls text-center">
+                    <button class="btn btn-primary btn-lg me-2" id="selectFiles">
+                        <i class="bi bi-folder2-open"></i> Выбрать файл
+                    </button>
+                    <button class="btn btn-success btn-lg me-2" id="analyzePhotos" disabled>
+                        <i class="bi bi-play-circle"></i> Запустить анализ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Результаты анализа -->
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="bi bi-graph-up"></i> Результаты анализа YOLOv8</h5>
+            </div>
+            <div class="card-body">
+                <div id="analysisResults">
+                    <div class="row mt-4" id="resultsContent" style="display: none;">
+                        <!-- Аннотированное изображение -->
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-header bg-dark text-white">
+                                    <h6 class="mb-0"><i class="bi bi-image"></i> Результат анализа</h6>
+                                </div>
+                                <div class="card-body text-center">
+                                    <img id="annotatedImage" src="" alt="Анализированное изображение" class="img-fluid rounded" style="max-height: 400px;">
+                                    <div class="mt-2 small text-muted">
+                                        <span class="badge bg-success">Зеленый: каски</span>
+                                        <span class="badge bg-danger ms-1">Красный: головы без касок</span>
+                                        <span class="badge bg-primary ms-1">Синий: люди</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Статистика -->
+                        <div class="col-md-6">
+    <div class="card">
+        <div class="card-header bg-warning text-dark">
+            <h6 class="mb-0"><i class="bi bi-exclamation-triangle"></i> Обнаруженные нарушения</h6>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Работники без касок
+                    <span id="noHelmetCount" class="badge bg-danger">0</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Всего людей обнаружено
+                    <span id="totalPeopleCount" class="badge bg-info">0</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Людей в касках обнаружено
+                    <span id="helmetCount" class="badge bg-success">0</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+                            
+                            <div class="card mt-3">
+                                <div class="card-header bg-success text-white">
+                                    <h6 class="mb-0"><i class="bi bi-check-circle"></i> Статистика соблюдения ТБ</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <strong>Уровень соблюдения:</strong>
+                                        <div class="progress mt-2">
+                                            <div id="complianceProgress" class="progress-bar bg-success" style="width: 0%">0%</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <strong>Работники в касках:</strong>
+                                        <div class="progress mt-2">
+                                            <div id="helmetProgress" class="progress-bar bg-info" style="width: 0%">0%</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <div id="complianceStatus" class="alert alert-info">
+                                            <i class="bi bi-info-circle"></i> Ожидание анализа...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модальное окно с детекциями -->
+<div class="modal fade" id="detectionsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Детекции YOLOv8</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="detectionsList"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentSessionId = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const selectFilesBtn = document.getElementById('selectFiles');
+    const analyzePhotosBtn = document.getElementById('analyzePhotos');
+    const analysisLoader = document.getElementById('analysisLoader');
+    const resultsContent = document.getElementById('resultsContent');
+
+    // Проверяем, что основные элементы существуют
+    if (!uploadArea || !fileInput || !selectFilesBtn || !analyzePhotosBtn || !analysisLoader || !resultsContent) {
+        console.error('Не найдены необходимые элементы DOM');
+        return;
+    }
+
+    // Обработка выбора файлов
+    selectFilesBtn.addEventListener('click', function() {
+        fileInput.click();
+    });
+    
+    uploadArea.addEventListener('click', function() {
+        fileInput.click();
+    });
+    
+    uploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        uploadArea.style.borderColor = '#0d6efd';
+        uploadArea.style.background = '#e9ecef';
+    });
+    
+    uploadArea.addEventListener('dragleave', function() {
+        uploadArea.style.borderColor = '#dee2e6';
+        uploadArea.style.background = '#f8f9fa';
+    });
+    
+    fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            uploadArea.innerHTML = `
+                <i class="bi bi-check-circle display-4 text-success mb-3"></i>
+                <h5>Выбран файл: ${this.files[0].name}</h5>
+                <p class="text-muted">Готово к анализу</p>
+            `;
+            analyzePhotosBtn.disabled = false;
+        }
+    });
+    
+    // Анализ фотографий с помощью YOLOv8
+    analyzePhotosBtn.addEventListener('click', function() {
+        if (!fileInput.files.length) {
+            alert('Пожалуйста, выберите файл для анализа');
+            return;
+        }
+        
+        const formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+        
+        // Показываем прелоадер
+        analysisLoader.style.display = 'block';
+        analyzePhotosBtn.disabled = true;
+        analyzePhotosBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Анализ...';
+        
+        fetch('/upload-monitoring-image/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken')
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка сети: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            analysisLoader.style.display = 'none';
+            analyzePhotosBtn.innerHTML = '<i class="bi bi-play-circle"></i> Запустить анализ';
+            
+            if (data.success) {
+                currentSessionId = data.session_id;
+                displayResults(data);
+            } else {
+                alert('Ошибка анализа: ' + (data.error || 'Неизвестная ошибка'));
+                analyzePhotosBtn.disabled = false;
+            }
+        })
+        .catch(error => {
+            analysisLoader.style.display = 'none';
+            analyzePhotosBtn.innerHTML = '<i class="bi bi-play-circle"></i> Запустить анализ';
+            console.error('Ошибка:', error);
+            alert('Ошибка сети: ' + error.message);
+            analyzePhotosBtn.disabled = false;
+        });
+    });
+    
+    // Функция отображения результатов
+    function displayResults(data) {
+        if (!resultsContent) {
+            console.error('Элемент resultsContent не найден');
+            return;
+        }
+        
+        resultsContent.style.display = 'block';
+        
+        // Обновляем статистику
+        safeUpdateElement('noHelmetCount', data.statistics.people_without_helmets);
+        safeUpdateElement('totalPeopleCount', data.statistics.total_people);
+        safeUpdateElement('helmetCount', data.statistics.people_with_helmets);
+        
+        // Прогресс-бары
+        const complianceRate = data.statistics.compliance_rate || 0;
+        const helmetRate = data.statistics.total_people > 0 ? 
+            (data.statistics.people_with_helmets / data.statistics.total_people * 100) : 0;
+        
+        updateProgressBar('complianceProgress', complianceRate, '%');
+        updateProgressBar('helmetProgress', helmetRate, '%');
+        
+        // Статус соблюдения
+        updateComplianceStatus(complianceRate);
+        
+        // Аннотированное изображение
+        if (data.annotated_image_url) {
+            const annotatedImage = document.getElementById('annotatedImage');
+            if (annotatedImage) {
+                annotatedImage.src = data.annotated_image_url;
+                annotatedImage.alt = "Анализированное изображение";
+            }
+        }
+        
+        console.log('Результаты анализа:', data);
+    }
+    
+    // Вспомогательные функции
+    
+    function safeUpdateElement(elementId, value) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = value;
+        }
+    }
+    
+    function updateProgressBar(elementId, value, suffix = '') {
+        const element = document.getElementById(elementId);
+        if (element) {
+            const percentage = Math.min(100, Math.max(0, value));
+            element.style.width = percentage + '%';
+            element.textContent = Math.round(percentage) + suffix;
+        }
+    }
+    
+    function updateComplianceStatus(complianceRate) {
+        const statusElement = document.getElementById('complianceStatus');
+        if (!statusElement) return;
+        
+        if (complianceRate >= 90) {
+            statusElement.className = 'alert alert-success';
+            statusElement.innerHTML = '<i class="bi bi-check-circle"></i> Отличный уровень соблюдения ТБ!';
+        } else if (complianceRate >= 70) {
+            statusElement.className = 'alert alert-warning';
+            statusElement.innerHTML = '<i class="bi bi-exclamation-triangle"></i> Удовлетворительный уровень, требуется внимание';
+        } else {
+            statusElement.className = 'alert alert-danger';
+            statusElement.innerHTML = '<i class="bi bi-exclamation-triangle"></i> Низкий уровень соблюдения! Требуются срочные меры';
+        }
+    }
+    
+    // Вспомогательная функция для получения CSRF токена
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="display-5 mb-4">
+            <i class="bi bi-info-circle text-primary"></i> О системе контроля безопасности
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-gear"></i> Назначение системы</h5>
+            </div>
+            <div class="card-body">
+                <p class="lead">Система предназначена для автоматизированного контроля соблюдения требований безопасности на строительных площадках с использованием современных технологий компьютерного зрения.</p>
+                
+                <h5 class="mt-4">Основные функции:</h5>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Мониторинг использования СИЗ</li>
+                            <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Анализ соблюдения нормативов</li>
+                            <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Формирование отчетной документации</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Учет и анализ инцидентов</li>
+                            <li class="mb-2"><i class="bi bi-check-circle text-success"></i> Статистика показателей безопасности</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0"><i class="bi bi-lightning"></i> Технические возможности</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <h6><i class="bi bi-camera-video text-primary"></i> Компьютерное зрение</h6>
+                    <p class="small text-muted">Анализ изображений</p>
+                </div>
+                <div class="mb-3">
+                    <h6><i class="bi bi-graph-up text-success"></i> AI-аналитика</h6>
+                    <p class="small text-muted">Машинное обучение для обнаружения нарушений</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="bi bi-award"></i> Преимущества системы</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3 mb-3">
+                        <i class="bi bi-speedometer2 display-4 text-success mb-3"></i>
+                        <h6>Высокая точность</h6>
+                        <p class="small text-muted">Точность обнаружения нарушений до 95%</p>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <i class="bi bi-cash-coin display-4 text-warning mb-3"></i>
+                        <h6>Экономия средств</h6>
+                        <p class="small text-muted">Снижение затрат на ручной контроль и штрафов</p>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <i class="bi bi-phone display-4 text-info mb-3"></i>
+                        <h6>Мобильный доступ</h6>
+                        <p class="small text-muted">Управление системой с любого устройства</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6 mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0"><i class="bi bi-telephone"></i> Контактная информация</h5>
+            </div>
+            <div class="card-body">
+                <div class="contact-info">
+                    <div class="contact-item mb-3">
+                        <strong><i class="bi bi-envelope text-primary"></i> Email:</strong>
+                        <p class="mb-0">cernousovdenis09@gmail.com</p>
+                    </div>
+                    <div class="contact-item mb-3">
+                        <strong><i class="bi bi-telephone text-success"></i> Телефон:</strong>
+                        <p class="mb-0">+375 (44) 732-03-31</p>
+                    </div>
+                    <div class="contact-item mb-3">
+                        <strong><i class="bi bi-clock text-info"></i> Время работы:</strong>
+                        <p class="mb-0">Пн-Пт: 9:00 - 18:00</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong><i class="bi bi-geo-alt text-danger"></i> Адрес:</strong>
+                        <p class="mb-0">г. Могилев, ул. Ленинская, д. 89</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card shadow">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0"><i class="bi bi-question-circle"></i> Техническая поддержка</h5>
+            </div>
+            <div class="card-body">
+                <p>Если у вас возникли вопросы по работе системы или требуется техническая поддержка, обратитесь в нашу службу поддержки:</p>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-telephone-outbound text-primary"></i> Техподдержка: +375 (44) 732-03-31</li>
+                    <li class="mb-2"><i class="bi bi-telegram text-info"></i> Telegram: @andrey_moskalev05</li>
+                </ul>
+                <div class="alert alert-info mt-3">
+                    <small><i class="bi bi-info-circle"></i> Среднее время ответа технической поддержки: 15 минут</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

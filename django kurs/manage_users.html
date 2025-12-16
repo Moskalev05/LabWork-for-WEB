@@ -1,0 +1,120 @@
+{% extends 'myapp/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="display-5 mb-4">
+            <i class="bi bi-people text-primary"></i> Управление пользователями
+        </h1>
+    </div>
+</div>
+
+<div class="card shadow">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="bi bi-list-ul"></i> Список пользователей</h5>
+        <span class="badge bg-light text-dark">{{ users.count }} пользователей</span>
+    </div>
+    <div class="card-body">
+        {% if users %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Имя пользователя</th>
+                        <th>ФИО</th>
+                        <th>Email</th>
+                        <th>Телефон</th>
+                        <th>Уровень доступа</th>
+                        <th>Дата регистрации</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>
+                            <strong>{{ user.username }}</strong>
+                            {% if user == request.user %}
+                            <span class="badge bg-info">Вы</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ user.get_full_name|default:"Не указано" }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.userprofile.phone }}</td>
+                        <td>
+                            <form method="post" action="{% url 'change_user_access' user.id %}" class="d-inline">
+                                {% csrf_token %}
+                                <select name="access_level" class="form-select form-select-sm" onchange="this.form.submit()" 
+                                        {% if user == request.user %}disabled title="Нельзя изменить свои права"{% endif %}>
+                                    <option value="viewer" {% if user.userprofile.access_level == 'viewer' %}selected{% endif %}>Обычный пользователь</option>
+                                    <option value="admin" {% if user.userprofile.access_level == 'admin' %}selected{% endif %}>Администратор</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td>{{ user.date_joined|date:"d.m.Y H:i" }}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a href="{% url 'edit_user' user.id %}" class="btn btn-outline-primary" 
+                                   title="Редактировать">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <button type="button" class="btn btn-outline-danger" 
+                                        {% if user == request.user %}disabled title="Нельзя удалить себя"{% endif %}
+                                        data-bs-toggle="modal" data-bs-target="#deleteModal{{ user.id }}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-4">
+            <i class="bi bi-people display-4 text-muted mb-3"></i>
+            <p class="lead">Пользователи не найдены</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% for user in users %}
+{% if user != request.user %}
+<div class="modal fade" id="deleteModal{{ user.id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ user.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel{{ user.id }}">
+                    <i class="bi bi-exclamation-triangle text-danger"></i> Подтверждение удаления
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <strong>Внимание!</strong> Это действие нельзя отменить.
+                </div>
+                <p>Вы уверены, что хотите удалить пользователя <strong>"{{ user.username }}"</strong>?</p>
+                <p class="text-muted small">
+                    Будет удален аккаунт: {{ user.get_full_name|default:user.username }} ({{ user.email }})
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle"></i> Отмена
+                </button>
+                <form method="post" action="{% url 'delete_user' user.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Удалить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% endblock %}
